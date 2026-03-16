@@ -1,19 +1,22 @@
 const Footer = () => {
   return (
-    <footer className="border-t border-border/30 py-10 section-padding">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-        <a href="#home" className="font-display font-bold text-lg tracking-display text-foreground">
-          JUNK <span className="text-gradient-gold">JETS</span>
+    <footer className="border-t border-white/10 bg-slate-950/95 py-8">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-4 sm:flex-row sm:px-6 lg:px-8">
+        <a
+          href="#home"
+          className="font-display text-base font-semibold tracking-[0.22em] text-slate-200 sm:text-lg"
+        >
+          RID OF <span className="text-emerald-400">JUNK</span>
         </a>
-        <p className="text-sm text-muted-foreground font-body">
-          © {new Date().getFullYear()} Junk Jets. All rights reserved.
+        <p className="text-xs text-slate-400 sm:text-sm">
+          © {new Date().getFullYear()} Rid of Junk. All rights reserved.
         </p>
-        <div className="flex gap-6">
+        <div className="flex flex-wrap justify-center gap-4 text-xs text-slate-400 sm:text-sm">
           {["Home", "Services", "About", "Contact"].map((item) => (
             <a
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-sm text-muted-foreground hover:text-foreground transition-colors font-body"
+              className="transition-colors hover:text-emerald-300"
             >
               {item}
             </a>
