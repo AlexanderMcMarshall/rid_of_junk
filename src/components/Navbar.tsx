@@ -1,6 +1,7 @@
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "#home" },
@@ -14,16 +15,11 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:h-20 sm:px-6 lg:px-8">
-        <a
-          href="#home"
-          className="font-display text-lg font-semibold tracking-[0.22em] text-slate-50 sm:text-xl"
-        >
-          RID OF{" "}
-          <span className="rounded-full bg-gradient-to-r from-emerald-400 to-lime-300 px-2 py-0.5 text-slate-950 shadow-[0_0_30px_rgba(16,185,129,0.5)]">
-            JUNK
-          </span>
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-slate-100 bg-white/95 backdrop-blur-md">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <a href="#home" className="font-display text-2xl font-black tracking-tighter text-slate-900 flex items-center gap-2">
+          <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white text-lg">R</div>
+          RID OF <span className="text-primary italic">JUNK</span>
         </a>
 
         {/* Desktop nav */}
@@ -32,29 +28,27 @@ const Navbar = () => {
             <a
               key={item.label}
               href={item.href}
-              className="relative text-sm font-medium text-slate-300 transition-colors duration-300 hover:text-emerald-300"
+              className="text-sm font-bold uppercase tracking-widest text-slate-600 transition-colors duration-200 hover:text-primary"
             >
-              <span className="relative">
               {item.label}
-                <span className="absolute -bottom-1 left-0 h-px w-0 bg-gradient-to-r from-emerald-400 to-lime-300 transition-all duration-300 group-hover:w-full" />
-              </span>
             </a>
           ))}
           <a
-            href="#contact"
-            className="inline-flex items-center rounded-full bg-emerald-500 px-5 py-2.5 text-sm font-semibold font-display tracking-wide text-slate-950 shadow-lg shadow-emerald-500/30 transition hover:bg-emerald-400"
+            href="tel:6195306943"
+            className="inline-flex items-center gap-2 rounded-xl bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-primary shadow-lg shadow-slate-900/10"
           >
-            Get Estimate
+            <Phone size={16} />
+            (619) 530-6943
           </a>
         </div>
 
         {/* Mobile toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="p-2 text-slate-50 md:hidden"
+          className="p-2 text-slate-900 md:hidden"
           aria-label="Toggle menu"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
@@ -62,28 +56,30 @@ const Navbar = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden border-b border-white/5 bg-slate-950/95 backdrop-blur-xl"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="md:hidden absolute top-20 left-0 right-0 overflow-hidden border-b border-slate-100 bg-white shadow-2xl p-6"
           >
-            <div className="mx-auto flex max-w-7xl flex-col gap-4 px-4 py-6">
+            <div className="flex flex-col gap-6">
               {navItems.map((item) => (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="py-2 text-base text-slate-300 transition-colors hover:text-emerald-300"
+                  className="text-lg font-bold text-slate-900 border-b border-slate-50 pb-2 flex justify-between items-center"
                 >
                   {item.label}
+                  <div className="w-2 h-2 rounded-full bg-primary/20"></div>
                 </a>
               ))}
               <a
-                href="#contact"
+                href="tel:6195306943"
                 onClick={() => setIsOpen(false)}
-                className="mt-2 rounded-full bg-emerald-500 px-5 py-3 text-center text-sm font-semibold font-display tracking-wide text-slate-950"
+                className="mt-4 rounded-xl bg-primary px-5 py-4 text-center font-bold text-white shadow-xl shadow-primary/20 flex items-center justify-center gap-3"
               >
-                Get Estimate
+                <Phone size={20} />
+                Call (619) 530-6943
               </a>
             </div>
           </motion.div>
